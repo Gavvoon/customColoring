@@ -67,13 +67,16 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     }
 
+    public void OnProgressChanged(SeekBar seekbar, int progress, boolean user) {
+        if()
+    }
+
     public boolean onTouch(View v, MotionEvent event) {
         int x = (int)event.getX();
         int y = (int)event.getY();
         return true;
 
         TextView object = findViewById(R.id.Item);
-        BlueSeekBar blueTV2 = new BlueSeekBar(minBlueTV);
         SeekBar minBlueSB = findViewById(R.id.seekBarBlue);
         minBlueSB.setOnTouchListener(object);
     }

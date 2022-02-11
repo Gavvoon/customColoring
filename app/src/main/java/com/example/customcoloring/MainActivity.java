@@ -2,82 +2,45 @@ package com.example.customcoloring;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
+public class MainActivity extends AppCompatActivity {
+
+    private CustomColoringView view;
+    private DrawingController controller;
+    private View touch;
+    private SeekBar redSB;
+    private SeekBar greenSB;
+    private SeekBar blueSB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /**
-         * Allows the red seekbar and it's count to increment
-         */
-        //Create and connect the max seekbar listener
-        TextView maxTV = findViewById(R.id.redSeekbarCount);
-        RedSeekBar redTV = new RedSeekBar(maxTV);
-        SeekBar maxRedSB = findViewById(R.id.seekBarRed);
-        maxRedSB.setOnSeekBarChangeListener(redTV);
+        TextView titleTV = findViewById(R.id.Item);
+        TextView red = findViewById(R.id.redSeekbarCount);
+        TextView green = findViewById(R.id.greenSeekbarCount);
+        TextView blue = findViewById(R.id.blueSeekbarCount);
 
-        //Create and connect the min seekbar listener
-        TextView minTV = findViewById(R.id.redSeekbarCount);
-        RedSeekBar redTV2 = new RedSeekBar(minTV);
-        SeekBar minRedSB = findViewById(R.id.seekBarRed);
-        minRedSB.setOnSeekBarChangeListener(redTV2);
+        //assign variable name's to the id of RGB seek bars
+        redSB = findViewById(R.id.seekBarRed);
+        greenSB = findViewById(R.id.seekBarGreen);
+        blueSB = findViewById(R.id.seekBarBlue);
 
-        /**
-         * Allows the green seekbar and it's count to increment
-         */
-        //Create and connect the max seekbar listener
-        TextView maxGreenTV = findViewById(R.id.greenSeekbarCount);
-        GreenSeekBar greenTV = new GreenSeekBar(maxGreenTV);
-        SeekBar maxGreenSB = findViewById(R.id.seekBarGreen);
-        maxGreenSB.setOnSeekBarChangeListener(greenTV);
 
-        //Create and connect the min seekbar listener
-        TextView minGreenTV = findViewById(R.id.greenSeekbarCount);
-        RedSeekBar greenTV2 = new RedSeekBar(minGreenTV);
-        SeekBar minGreenSB = findViewById(R.id.seekBarGreen);
-        minGreenSB.setOnSeekBarChangeListener(greenTV2);
+        view = findViewById(R.id.DrawView);
+        controller = new DrawingController(view, titleTV,red,green,blue,redSB,greenSB,blueSB);
 
-        /**
-         * Allows the blue seekbar and it's count to increment
-         */
-        //Create and connect the max seekbar listener
-        TextView maxBlueTV = findViewById(R.id.blueSeekbarCount);
-        BlueSeekBar blueTV = new BlueSeekBar(maxBlueTV);
-        SeekBar maxBlueSB = findViewById(R.id.seekBarBlue);
-        maxBlueSB.setOnSeekBarChangeListener(blueTV);
+        touch = findViewById(R.id.DrawView);
+        touch.setOnTouchListener(controller);
+        redSB.setOnSeekBarChangeListener(controller);
+        greenSB.setOnSeekBarChangeListener(controller);
+        blueSB.setOnSeekBarChangeListener(controller);
 
-        //Create and connect the min seekbar listener
-        TextView minBlueTV = findViewById(R.id.blueSeekbarCount);
-        BlueSeekBar blueTV2 = new BlueSeekBar(minBlueTV);
-        SeekBar minBlueSB = findViewById(R.id.seekBarBlue);
-        minBlueSB.setOnSeekBarChangeListener(blueTV2);
 
-    }
-
-    public void OnProgressChanged(SeekBar seekbar, int progress, boolean user) {
-        if()
-    }
-
-    public boolean onTouch(View v, MotionEvent event) {
-        int x = (int)event.getX();
-        int y = (int)event.getY();
-        return true;
-
-        TextView object = findViewById(R.id.Item);
-        SeekBar minBlueSB = findViewById(R.id.seekBarBlue);
-        minBlueSB.setOnTouchListener(object);
     }
 }

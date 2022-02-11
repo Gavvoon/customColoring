@@ -26,10 +26,10 @@
         android:layout_weight="2"
         android:orientation="vertical" >
 
-        <com.example.customcoloring.Drawing
-            android:id="@+id/SurfaceView"
+        <com.example.customcoloring.CustomColoringView
+            android:id="@+id/DrawView"
             android:layout_height="match_parent"
-            android:layout_width="match_parent"></com.example.customcoloring.Drawing>
+            android:layout_width="match_parent"></com.example.customcoloring.CustomColoringView>
 
 
     </LinearLayout>
